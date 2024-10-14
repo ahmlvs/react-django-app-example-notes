@@ -21,7 +21,7 @@ django-admin startproject backend
 2. create empty app "api"
 ```
 cd backend
-python manage.py startapp api
+python3 manage.py startapp api
 ```
 
 3. add django settings
@@ -62,4 +62,15 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
+```
+
+4. make migrations
+```
+python3 manage.py makemigrations
+python manage.py migrate 
+```
+
+5. run application
+```
+python3 manage.py runserver
 ```
