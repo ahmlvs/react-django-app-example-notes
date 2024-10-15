@@ -74,3 +74,22 @@ python manage.py migrate
 ```
 python3 manage.py runserver
 ```
+
+## frontend
+
+1. create empty react project
+```
+npm create vite@latest frontend -- --template react
+cd frontend
+npm install
+```
+
+2. install some packages
+```
+npm install axios react-router-dom jwt-decode
+```
+
+3. run application
+```
+npm run dev
+```
