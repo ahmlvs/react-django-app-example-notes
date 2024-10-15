@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import Note from "../components/Note";
+import LoadingIndicator from "../components/LoadingIndicator";
 import "../styles/Home.css";
 
 function Home() {
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getNotes();
@@ -39,6 +41,7 @@ function Home() {
 
   const createNote = (e) => {
     e.preventDefault();
+    setLoading(true);
     api
       .post("/api/notes/", { title, content })
       .then((res) => {
@@ -49,7 +52,10 @@ function Home() {
         }
         getNotes();
       })
-      .catch((err) => alert(err));
+      .catch((err) => alert(err))
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -83,6 +89,7 @@ function Home() {
           onChange={(e) => setContent(e.target.value)}
         />
         <br />
+        {loading && <LoadingIndicator />}
         <input type="submit" value="Submit" />
       </form>
     </div>
